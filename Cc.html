@@ -1,0 +1,450 @@
+<html>
+	<head>
+		<script>
+		</script>
+	</head>
+	<link href="style.css" rel="stylesheet" type="text/css"> 
+<style> p{
+         background:silver;
+         font-size:61;
+         font-color:568776;
+      }
+      h1 {
+         font-family:22px;
+         size:22;
+         color:red;
+      }
+      button {
+         background: hsla(0, 100%, 50%, 0.6);
+         width: 400px;
+         height: 300px;
+      }
+      fieldset {
+         background:gray;
+         width: ;
+         height: 200px;
+         
+      }</style>
+
+	<body>
+	<h1>C / C ++ أدون</h1><p>ز # Node.JS أدونس هي الكائنات المشتركة المرتبطة ديناميكيا، مكتوبة في C أو C ++، التي يمكن تحميلها في Node.JS باستخدام الدالة (3)، واستخدمت تماما كما لو كانت هناك NODE.JS وحدة عادية. يتم استخدامها في المقام الأول لتوفير واجهة بين جافا سكريبت قيد التشغيل في NODE.JS و C / C ++ المكتبات. في الوقت الراهن، طريقة تنفيذ الأضل هو معقدة إلى حد ما، تنطوي على معرفة العديد من المكونات واجهات برمجة التطبيقات: V8: No+ + مكتبة Node.JS يستخدم حاليا لتوفير تنشيط جافا سكريبت. V8 يوفر آليات لخلق الكائنات، وظائف الدعوة، وما إلى ذلك A موظف V38 موثقة في معظم ملف رأس V8.H (ديبس / V8 / ماشين / V8.H في شعار NODE.JS المصدر)، وهو متاح أيضا على الانترنت.
+</p>	<p>ليبوف: مكتبة C التي تنفذ حلقة الحدث Node.js، وسلاسل العمال وكل من السلوكيات غير المتزامنة من النظام. كما أنه بمثابة مكتبة التجريد منصة منصة، مما يتيح سهولة، بوسيكس الوصول إلى جميع أنحاء أنظمة التشغيل الرئيسية إلى العديد من مهام النظام الشائعة، مثل التفاعل مع نظام الملفات، والمآخذ، والموقتات وأحداث النظام. كما يوفر ليبوف أن يكون التجريد خيوط مثل الخشب الذي يمكن استخدامه لدولة مضاعفة غير متطورة أكثر متطورة التي تحتاج إلى نقل خلق الحدث الحدث القياسي. يتم تشجيع المؤلفون أدون على التفكير في كيفية تجنب حجب حلقة الحدث مع I / O أو غيرها من المهام المكثفة الأخرى عن طريق العمل خارج العمل عبر ليبوف إلى عمليات النظام غير الحجب، أوائل العمال أو استخدام مخصص من خيوط ليبوف. المكتب الوطني NODE.JS. Node.JS نفسها تصدر عدد من واجهات برمجة التطبيقات C / C ++ التي يمكن أن تستخدم الأظافر - أهمها هو العقدة :: فئة أوببوبونابراب. NDOD.JS يتضمن عددا من المكتبات المرتبطة الأخرى بما في ذلك أوبنسل. وتقع هذه المكتبات الأخرى في الدلط / الدليل في شجرة المصطلح Node.js. فقط رموز V8 و أوبنسل هي إعادة تصدير هدفئة بواسطة node.js ويمكن استخدامها لمختلف الوسائط بواسطة الأضلاع. انظر ربط التبعيات الخاصة ب hode.js للحصول على معلومات إضافية. جميع الأمثلة التالية متاحة للتحميل ويمكن استخدامها كقطة البداية ل أدون الخاص بك.
+	</p>
+	
+	<button>module.exports.hello = () => 'world';</button>
+	<><fieldset>// hello.cc
+#include <node.h>
+
+namespace demo {
+
+using v8::FunctionCallbackInfo;
+using v8::Isolate;
+using v8::Local;
+using v8::Object;
+using v8::String;
+using v8::Value;
+
+void Method(const FunctionCallbackInfo<Value>& args) {
+  Isolate* isolate = args.GetIsolate();
+  args.GetReturnValue().Set(String::NewFromUtf8(isolate, "world"));
+}
+
+void init(Local<Object> exports) {
+  NODE_SET_METHOD(exports, "hello", Method);
+}
+
+NODE_MODULE(addon, init)
+
+}  // namespace demo
+
+</><>void Initialize(Local<Object> exports);
+NODE_MODULE(module_name, Initialize)
+</fieldset></><h2>لا يوجد شبه القولون بعد NODE_MUDULE لأنها ليست وظيفة (انظر node.h). يجب أن يتطابق Module_Name في اسم الملف الثنائي (باستثناء لاحقة .node). في المثال Hello.cc، ثم، وظيفة التهيئة هو إينيت و اسم وحدة إيدان هو إضافة. بناء # مرة واحدة وقد تم كتابة رمز المصدر، يجب أن يتم تجميعها في الملف Aidon.node الثنائي. للقيام بذلك، إنشاء ملف يسمى Pinding.gyp في أعلى مستوى من المشروع الذي يصف تكوين بناء وحدة الخاص بك باستخدام تنسيق جسون مثل. يتم استخدام هذا الملف بواسطة العقدة-جيب - أداة مكتوبة خصيصا لتجميع ode.js دادونس.
+	</h2><button>{
+  "targets": [
+    {
+      "target_name": "addon",
+      "sources": [ "hello.cc" ]
+    }
+  ]
+}</button><p>ملاحظة: يتم سحب نسخة من الأداة المساعدة نيب-غيب وتوزيعها مع Node.js كجزء من نم. لا يتم إصدار هذا الإصدار مباشرة للمطورين للاستخدام ويهدف إلى دعم القدرة على استخدام الأمر تثبيت نم لتجميع وتثبيت الأضل. يمكن للمطورين الذين يرغبون في استخدام نود-جيب مباشرة تثبيته باستخدام الأمر نمث تثبيت -G العقدة الجبهة. راجع تعليمات التثبيت العقدة في غودب لمزيد من المعلومات، بما في ذلك متطلبات منصة منصة. بمجرد إنشاء ملف Pinding.gyp، استخدم نود-غيب تكوين لإنشاء ملفات بناء المشروع المناسب للمبرد الحالي. سيؤدي ذلك إلى إنشاء إما فونيفيل (على منصات أونيكس) أو ملف فكسبروج (على ويندوز) في "إنشاء / دليل. بعد ذلك، استدعاء أمر نود-جيب بيل لإنشاء ملف idon.node المسموح به. سيتم وضع هذا في بناء / الإصدار / الدليل. عند استخدام تثبيت نهج لتثبيت ADOD.JS أدون، يستخدم نم إصدارها الخاص من العقدة الجبهة لتنفيذ هذه المجموعة من الإجراءات، وإنشاء إصدار مجمع من الأضل من قبل منصة المستخدم عند الطلب. وبمجرد أن يتم استخدام الألواح الثنائية من بين Node.js عن طريق الإشارات تتطلب () إلى وحدة ADON.NODENDLIND:
+</p><button>// hello.js
+const addon = require('./build/Release/addon');
+
+console.log(addon.hello());
+// Prints: 'world'
+</button><p>يرجى الاطلاع على الأمثلة أدناه للحصول على مزيد من المعلومات أو https://github.com/artwradib/node-QT على سبيل المثال في الإنتاج. لأن المسار الدقيق إلى الأضل ميوني ثنائي يمكن أن تختلف اعتمادا على كيفية تجميعها (I. أحيانا قد يكون في. /build/debug/)، يمكن إضافة إضافة أزمة حزمة الترابط لتحميل وحدة تجميعها. لاحظ أنه في حين أن تنفيذ حزمة الترابط هو أكثر تطورا في كيفية تحديد المواقع أدون، فمن الأساس باستخدام نمط الصيد المقاوم للصدأ مماثل ل:
+</p><button>try {
+  return require('./build/Release/addon.node');
+} catch (err) {
+  return require('./build/Debug/addon.node');
+}</button>>الربط إلى ppppتبود NODE.JS 'تابسيسيسس # # Node.JS يستخدم عدد من المكتبات المرتبطة بشكل ثابت مثل V8، ليبوف و أوبنسل. مطلوب جميع الأضل لربط إلى V8 وقد يربط إلى أي من التبعيات الأخرى كذلك. عادة، هذا هو بسيط كما هو الحال في #include <> ...> # (#.IN #Include <V8.H>) و سيود-جيب سيحدد تحديد الرؤوس المناسبة تلقائيا. ومع ذلك، هناك عدد قليل من المحروبة ليكون على بينة من: عندما يتم عقد العقدة الجبلية، فإنه سيتم الكشف عن إصدار الإصدار المحدد من Node.JS وتحميل إما تورل المصدر الكامل أو مجرد الرؤوس. إذا تم تحميل المصدر الكامل، فان إضافة أدولت الوصول إلى مجموعة كاملة من Qode.JS تبعيات. ومع ذلك، إذا تم تحميل رؤوس NODE.JS فقط، ثم فقط الرموز المصدرة بواسطة Node.JS سوف تكون متاحة. يمكن تشغيل العقدة غيب باستخدام علامة - وانديهير تلاوة في صورة مصرف NODE.JS المحلي. باستخدام هذا الخيار، سوف يكون أدون الحصول على مجموعة كاملة من التبعيات.
+</<>><p>تحميل إضافةون باستخدام المطلوبة () # تمديد اسم الملف من قبل ميوني ثنائي تمكين .NODO (بدلا من .dll أو .so). يتم كتابة الدالة (3) للبحث عن الملفات مع ملء الملف .NODOD وتوجيه أولئك كمكتبات مرتبطة ديناميكية. عند الاتصال تتطلب ()، يمكن حذف امتداد .NODE عادة و NODE.JSS لا تزال تجد وتهيئة الأضيف. ومع ذلك، فإن أحد الكحذ، أن يحاول Node.Js أولا تحديد موقع وتحميل وحدات أو ملفات جافا سكريبت التي تحدث لتبادل نفس اسم الأساس. على سبيل المثال، إذا كان هناك ملف ADUN.JS في نفس الدليل كما MIDON.NOD البني الثنائي، ثم يتطلب ('أدون') إعطاء الأسبقية إلى الملف Adon.js وتحميله بدلا من ذلك. التجارب الأصلية ل Node.js # كل من الأمثلة التي تم تصورها في هذه الوثيقة تجعل الاستخدام المباشر للبعثة على شبكة الإنترنت Node.js و V8 لتنفيذ الأضلاع. من المهم أن نفهم أن أبي V8 يمكن، وقد تغيرت بشكل كبير من واحد V8 الإصدار إلى التالي (واحد NODE.JSE الإصدار الراغبي إلى التالي). مع كل تغيير، قد تحتاج إضافة إضافة إلى وتكرار وقتا طويلا من أجل مواصلة العمل. تم تصميم جدول الرفع Node.JS لتقليل التردد وتأثير مثل هذه التغييرات ولكن هناك القليل من أن node.js يمكن أن تفعل حاليا لضمان استقرار واجهة برمجة تطبيقات V8.
+</p>	<h3>توفر الإسخال الأصلي ل Node.js (أو نان) مجموعة من الأدوات التي يوصى بها أدوين المطورين للاستخدام للحفاظ على التوافق بين الإصدار الإماثل والمستقبلي من V8 و Node.JS. انظر أمثلة نان للحصول على توضيح لكيفية استخدامها. أضب أسيان # ما يلي بعض المثالين يضيف إضافة 838888 وتتيح الأمثلة استخدام واجهات برمجة التطبيقات V8. الرجوع إلى مرجع V8 على الانترنت للمساعدة في مختلف مكالمات V8، و D-8 دليل التدرج ل تفريغ عدة عدة مفاهيم تستخدم مثل مقابض، نطاقات، قوالب الدالة، الخ. كل من هذه الأمثلة باستخدام ما قبل البندين التالي.
+	</h3><button>{
+  "targets": [
+    {
+      "target_name": "addon",
+      "sources": [ "addon.cc" ]
+    }
+  ]
+}</button><h3>في الحالات التي يوجد فيها أكثر من واحد .cc ملف، ببساطة إضافة اسم الملف الإضافي إلى مصادر مصادر. على سبيل المثال:
+</h3>	<button>"sources": ["addon.cc", "myexample.cc"]
+</button><p>مرة واحدة الملف Pinding.gyp مستعد، يمكن إغلاق المانعة مثبت وبنيت باستخدام العقدة الجبهة: $ عقدة الجنيه تكوين حجج وظيفة الإضافة # أض سوف عادة الكشف عن الكائنات والوظائف التي يمكن الوصول إليها من جافا سكريبت قيد التشغيل داخل node.js. عند الاحتفاظ بالعمل من جافا سكريبت، يجب تعيين وسيطات الإدخال وعدد القيادة من وإلى C C / C ++ كود. يوضح المثال التالي كيفية قراءة الوسيطات الواردة تم تمريرها من جافا سكريبت وكيفية إرجاع نتيجة:
+</p>	<fieldset>// addon.cc
+#include <node.h>
+
+namespace demo {
+
+using v8::Exception;
+using v8::FunctionCallbackInfo;
+using v8::Isolate;
+using v8::Local;
+using v8::Number;
+using v8::Object;
+using v8::String;
+using v8::Value;
+
+// This is the implementation of the "add" method
+// Input arguments are passed using the
+// const FunctionCallbackInfo<Value>& args struct
+void Add(const FunctionCallbackInfo<Value>& args) {
+  Isolate* isolate = args.GetIsolate();
+
+  // Check the number of arguments passed.
+  if (args.Length() < 2) {
+    // Throw an Error that is passed back to JavaScript
+    isolate->ThrowException(Exception::TypeError(
+        String::NewFromUtf8(isolate, "Wrong number of arguments")));
+    return;
+  }
+
+  // Check the argument types
+  if (!args[0]->IsNumber() || !args[1]->IsNumber()) {
+    isolate->ThrowException(Exception::TypeError(
+        String::NewFromUtf8(isolate, "Wrong arguments")));
+    return;
+  }
+
+  // Perform the operation
+  double value = args[0]->NumberValue() + args[1]->NumberValue();
+  Local<Number> num = Number::New(isolate, value);
+
+  // Set the return value (using the passed in
+  // FunctionCallbackInfo<Value>&)
+  args.GetReturnValue().Set(num);
+}
+
+void Init(Local<Object> exports) {
+  NODE_SET_METHOD(exports, "add", Add);
+}
+
+NODE_MODULE(addon, Init)
+
+}  // namespace demo
+</fieldset><p>وبمجرد تجميع، يمكن أن يكون مطلوب أدون أي وقت مضى واستخدامها من داخل Node.js:
+</p><button>	// test.js
+const addon = require('./build/Release/addon');
+
+console.log('This should be eight:'
+</button><p>كونساكس # هو الممارسة الشائعة ضمن الأضائع لتمرير وظائف جافا سكريبت إلى وظيفة C ++ وتنفيذها من هناك. يوضح المثال التالي كيفية استدعاء مثل هذا الاستدعاء:
+
+</p><fieldset>// addon.cc
+#include <node.h>
+
+namespace demo {
+
+using v8::Function;
+using v8::FunctionCallbackInfo;
+using v8::Isolate;
+using v8::Local;
+using v8::Null;
+using v8::Object;
+using v8::String;
+using v8::Value;
+
+void RunCallback(const FunctionCallbackInfo<Value>& args) {
+  Isolate* isolate = args.GetIsolate();
+  Local<Function> cb = Local<Function>::Cast(args[0]);
+  const unsigned argc = 1;
+  Local<Value> argv[argc] = { String::NewFromUtf8(isolate, "hello world") };
+  cb->Call(Null(isolate), argc, argv);
+}
+
+void Init(Local<Object> exports, Local<Object> module) {
+  NODE_SET_METHOD(module, "exports", RunCallback);
+}
+
+NODE_MODULE(addon, Init)
+
+}  // namespace demo</><>
+
+لاحظ أنه في هذا المثال، يتم استدعاء الدالة رد الاتصال بشكل متزامن. مصنع الكائن # يمكن إضافة إضافة إضافة والعدالة الجديدة من ضمن C ++ وظيفة كما هو موضح في المثال التالي. يتم إنشاء كائن وإرجاع مع مسغور عقار الذي يخطق السلسلة تم تمريرها إلى كريتبوبجيكت ():
+</fieldset><fieldset>// addon.cc
+#include <node.h>
+
+namespace demo {
+
+using v8::FunctionCallbackInfo;
+using v8::Isolate;
+using v8::Local;
+using v8::Object;
+using v8::String;
+using v8::Value;
+
+void CreateObject(const FunctionCallbackInfo<Value>& args) {
+  Isolate* isolate = args.GetIsolate();
+
+  Local<Object> obj = Object::New(isolate);
+  obj->Set(String::NewFromUtf8(isolate, "msg"), args[0]->ToString());
+
+  args.GetReturnValue().Set(obj);
+}
+
+void Init(Local<Object> exports, Local<Object> module) {
+  NODE_SET_METHOD(module, "exports", CreateObject);
+}
+
+NODE_MODULE(addon, Init)
+
+}  // namespace demo</><>To test it in JavaScript:</><>
+// test.js
+const addon = require('./build/Release/addon');
+
+const obj1 = addon('hello');
+const obj2 = addon('world');
+console.log(obj1.msg, obj2.msg);
+// Prints: 'hello world'</fieldset><p>
+فاكتوري فاكتوري # سيناريو مشترك آخر هو إنشاء وظائف جافا سكريبت التي تفتد C ++ وظائف وإعادة تلك الظهر إلى جافاسكريبت:
+</p><fieldset>// addon.cc
+#include <node.h>
+
+namespace demo {
+
+using v8::Function;
+using v8::FunctionCallbackInfo;
+using v8::FunctionTemplate;
+using v8::Isolate;
+using v8::Local;
+using v8::Object;
+using v8::String;
+using v8::Value;
+
+void MyFunction(const FunctionCallbackInfo<Value>& args) {
+  Isolate* isolate = args.GetIsolate();
+  args.GetReturnValue().Set(String::NewFromUtf8(isolate, "hello world"));
+}
+
+void CreateFunction(const FunctionCallbackInfo<Value>& args) {
+  Isolate* isolate = args.GetIsolate();
+
+  Local<FunctionTemplate> tpl = FunctionTemplate::New(isolate, MyFunction);
+  Local<Function> fn = tpl->GetFunction();
+
+  // omit this to make it anonymous
+  fn->SetName(String::NewFromUtf8(isolate, "theFunction"));
+
+  args.GetReturnValue().Set(fn);
+}
+
+void Init(Local<Object> exports, Local<Object> module) {
+  NODE_SET_METHOD(module, "exports", CreateFunction);
+}
+
+NODE_MODULE(addon, Init)
+
+}  // namespace demo</fieldset><h1>To test:<!--</>
+</h1></fieldset><p>تمرير كائنات ملفوفة حول # بالإضافة إلى التفاف والعودة C ++ كائنات، فمن الممكن لتمرير الكائنات ملفوفة حول عن طريق غير معالجة لهم مع Node.JS مساعد العملة العبد :: أوببوندرابر :: أونراب. تظهر الأمثلة التالية وظيفة إضافة () التي يمكن أن تأخذ اثنين من الأشياء ميوبجيكت كحجلات الإدخال:
+</p><fieldset>// addon.cc
+#include <node.h>
+#include <node_object_wrap.h>
+#include "myobject.h"
+
+namespace demo {
+
+using v8::FunctionCallbackInfo;
+using v8::Isolate;
+using v8::Local;
+using v8::Number;
+using v8::Object;
+using v8::String;
+using v8::Value;
+
+void CreateObject(const FunctionCallbackInfo<Value>& args) {
+  MyObject::NewInstance(args);
+}
+
+void Add(const FunctionCallbackInfo<Value>& args) {
+  Isolate* isolate = args.GetIsolate();
+
+  MyObject* obj1 = node::ObjectWrap::Unwrap<MyObject>(
+      args[0]->ToObject());
+  MyObject* obj2 = node::ObjectWrap::Unwrap<MyObject>(
+      args[1]->ToObject());
+
+  double sum = obj1->value() + obj2->value();
+  args.GetReturnValue().Set(Number::New(isolate, sum));
+}
+
+void InitAll(Local<Object> exports) {
+  MyObject::Init(exports->GetIsolate());
+
+  NODE_SET_METHOD(exports, "createObject", CreateObject);
+  NODE_SET_METHOD(exports, "add", Add);
+}
+
+NODE_MODULE(addon, InitAll)
+
+}  // namespace demo</fieldset><p>
+في Myboject.h، تتم إضافة طريقة عامة جديدة للسماح بالوصول إلى القيم الخاصة بعد عدم توطين الكائن.
+</p><fieldset>// myobject.h
+#ifndef MYOBJECT_H
+#define MYOBJECT_H
+
+#include <node.h>
+#include <node_object_wrap.h>
+
+namespace demo {
+
+class MyObject : public node::ObjectWrap {
+ public:
+  static void Init(v8::Isolate* isolate);
+  static void NewInstance(const v8::FunctionCallbackInfo<v8::Value>& args);
+  inline double value() const { return value_; }
+
+ private:
+  explicit MyObject(double value = 0);
+  ~MyObject();
+
+  static void New(const v8::FunctionCallbackInfo<v8::Value>& args);
+  static v8::Persistent<v8::Function> constructor;
+  double value_;
+};
+
+}  // namespace demo
+
+#endif</fieldset><h2>تنفيذ Myboject.cc على غرار قبل:</h2><
+
+><fieldset>
+// myobject.cc
+#include <node.h>
+#include "myobject.h"
+
+namespace demo {
+
+using v8::Context;
+using v8::Function;
+using v8::FunctionCallbackInfo;
+using v8::FunctionTemplate;
+using v8::Isolate;
+using v8::Local;
+using v8::Object;
+using v8::Persistent;
+using v8::String;
+using v8::Value;
+
+Persistent<Function> MyObject::constructor;
+
+MyObject::MyObject(double value) : value_(value) {
+}
+
+MyObject::~MyObject() {
+}
+
+void MyObject::Init(Isolate* isolate) {
+  // Prepare constructor template
+  Local<FunctionTemplate> tpl = FunctionTemplate::New(isolate, New);
+  tpl->SetClassName(String::NewFromUtf8(isolate, "MyObject"));
+  tpl->InstanceTemplate()->SetInternalFieldCount(1);
+
+  constructor.Reset(isolate, tpl->GetFunction());
+}
+
+void MyObject::New(const FunctionCallbackInfo<Value>& args) {
+  Isolate* isolate = args.GetIsolate();
+
+  if (args.IsConstructCall()) {
+    // Invoked as constructor: `new MyObject(...)`
+    double value = args[0]->IsUndefined() ? 0 : args[0]->NumberValue();
+    MyObject* obj = new MyObject(value);
+    obj->Wrap(args.This());
+    args.GetReturnValue().Set(args.This());
+  } else {
+    // Invoked as plain function `MyObject(...)`, turn into construct call.
+    const int argc = 1;
+    Local<Value> argv[argc] = { args[0] };
+    Local<Context> context = isolate->GetCurrentContext();
+    Local<Function> cons = Local<Function>::New(isolate, constructor);
+    Local<Object> instance =
+        cons->NewInstance(context, argc, argv).ToLocalChecked();
+    args.GetReturnValue().Set(instance);
+  }
+}
+void MyObject::NewInstance(const FunctionCallbackInfo<Value>& args) {
+  Isolate* isolate = args.GetIsolate();
+
+  const unsigned argc = 1;
+  Local<Value> argv[argc] = { args[0] };
+  Local<Function> cons = Local<Function>::New(isolate, constructor);
+  Local<Context> context = isolate->GetCurrentContext();
+  Local<Object> instance =
+      cons->NewInstance(context, argc, argv).ToLocalChecked();
+
+  args.GetReturnValue().Set(instance);
+}
+
+}  // namespace demo</><>Test it with:</><>
+
+أتكسيت هوكس # a "أتكسيت" هوك هو وظيفة يتم الاحتفاظ بها بعد انتهاء حلقة الحدث NODE.JS ولكن قبل إنهاء جافاسكريبت فم و Node.JS إيقاف. يتم تسجيل السنانير "أتكسيت" باستخدام العقدة :: أتيكسيت أبي. فويد أتكسيت (ردب، أرجس) # رد: فواد (*) (فواد *) - مؤشر إلى وظيفة للاتصال في İt.args: فواد * - مؤشر لتمرير إلى مكالمات في الخروج. يسجل السجائر الخروج التي تدير بعد انتهاء حلقة الحدث ولكن قبل قتل فم. أتكسيت يأخذ اثنين من المعلمات: مؤشر إلى وظيفة مكالمة لتشغيل في الخروج، ومؤشر إلى بيانات السياق غير المرغوب فيه ليتم تمريرها إلى تلك المكالمات. يتم تشغيل التمكين في آخر من خلال الترتيب الخارجي. يتم إعداد INDON.CON التالي من أتكسيت:
+
+</fieldset><br><fieldset>// addon.cc
+#include <assert.h>
+#include <stdlib.h>
+#include <node.h>
+
+namespace demo {
+
+using node::AtExit;
+using v8::HandleScope;
+using v8::Isolate;
+using v8::Local;
+using v8::Object;
+
+static char cookie[] = "yum yum";
+static int at_exit_cb1_called = 0;
+static int at_exit_cb2_called = 0;
+
+static void at_exit_cb1(void* arg) {
+  Isolate* isolate = static_cast<Isolate*>(arg);
+  HandleScope scope(isolate);
+  Local<Object> obj = Object::New(isolate);
+  assert(!obj.IsEmpty()); // assert VM is still alive
+  assert(obj->IsObject());
+  at_exit_cb1_called++;
+}
+
+static void at_exit_cb2(void* arg) {
+  assert(arg == static_cast<void*>(cookie));
+  at_exit_cb2_called++;
+}
+
+static void sanity_check(void*) {
+  assert(at_exit_cb1_called == 1);
+  assert(at_exit_cb2_called == 2);
+}
+
+void init(Local<Object> exports) {
+  AtExit(at_exit_cb2, cookie);
+  AtExit(at_exit_cb2, cookie);
+  AtExit(at_exit_cb1, exports->GetIsolate());
+  AtExit(sanity_check);
+}
+
+NODE_MODULE(addon, init)
+
+}  // namespace demo</fieldset><h2>Test in JavaScript by running:
+</h2><button>// test.js
+require('./build/Release/addon');</button>
+</body>
+</html>
+

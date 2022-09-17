@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<script>
+		</script>
+	</head>
+	<body>
+	خادم الويب هو برنامج البرمجيات التي يعالج طلبات هتبت المرسلة بواسطة عملاء هتب مثل متصفحات الويب، وإرجاع صفحات الويب ردا على العملاء. عادة ما تستجيب خوادم الويب مع مستندات هتمل مع الصور وأرقى النمط والنشرات.<p> معظم برامج ويب سيرفر الخادم الخادم سيرفر باستخدام اللغة البرمجية أو إعادة توجيه إلى ملقم التطبيق الذي يقوم بمهمة محددة للحصول على بيانات من قاعدة البيانات، وأداء المنطق المعقدة وما إلى ذلك، ويرسل نتيجة لعميل هتب من خلال خادم الويب. خادم ويب أباتشي هو واحد من ملقم ويب المستخدم الأكثر شيوعا. وهو مشروع مفتوح المصدر.<p>
+يمكن تشغيل تطبيق ويب تطبيق تطبيق ويب في 4 طبقات: طبقة العميل: يحتوي طبقة العميل على متصفحات الويب، متصفحات الجوال أو التطبيقات التي يمكن أن تجعل طلب هتب على خادم الويب. طبقة: طبقة الملقم يحتوي على ملقم ويب التي يمكن أن يعترض طلب الطلب من قبل العملاء وتمريرها طبقة.BINESININ الطبقة: طبقة الأعمال يحتوي على ملقم التطبيق الذي يستخدمه خادم الويب للقيام بهذا المعالجة. تتفاعل هذه الطبقة مع طبقة البيانات عبر قاعدة البيانات أو بعض البرامج Pater.data.Atata: طبقة البيانات تحتوي على قواعد بيانات أو أي مصدر للبيانات.<p>
+إنشاء خادم الويب باستخدام Node.JS Node.JS يوفر وحدة هتب التي يمكن استخدامها لإنشاء عميل هتب من الملقم. إنشاء ملف جس Cover Cever.js وجود التعليمات البرمجية التالية:
+<P>
+var http = require('http'); var fs = require('fs'); var url = require('url'); // Create a server http.createServer( function (request, response) { // Parse the request containing file name var pathname = url.parse(request.url).pathname; // Print the name of the file for which request is made. console.log("Request for " + pathname + " received."); // Read the requested file content from file system fs.readFile(pathname.substr(1), function (err, data) { if (err) { console.log(err); // HTTP Status: 404 : NOT FOUND // Content Type: text/plain response.writeHead(404, {'Content-Type': 'text/html'}); }else{ //Page found // HTTP Status: 200 : OK // Content Type: text/plain response.writeHead(200, {'Content-Type': 'text/html'}); // Write the content of the file to response body response.write(data.toString()); } // Send the response body response.end(); }); }).listen(8081); // Console will print the message console.log('Server running at http://127.0.0.1:8081/'); 
+<p>
+بعد ذلك، قم بإنشاء ملف هتمل المسمى index.html وجود التعليمات البرمجية التالية في نفس الدليل حيث قمت بإنشائه Server.js<p>
+html> head> title>Sample Page/title> < /head> < body> Hello World! < /body> <<>html> 
+Now open the Node.js command prompt and run the following code:
+<p>
+node server.js
+<p>
+Open http://127.0.0.1:8081/index.htm in any browser and see the below result.
+<p>
+الآن فتح موجه الأوامر Node.js وتشغيل التعليمات البرمجية التالية: node Server.js فتح http://127.0.0.1:8081/index.htm في أي متصفح ورؤية النتيجة أدناه.
+	</body>
+</html>

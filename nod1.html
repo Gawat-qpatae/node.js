@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<script>
+		</script>
+	</head>
+	<h1>Example#</h1>
+<p>
+An example of a web server written with Node.js which responds with 'Hello World':
+</p><button>
+const http = require('http'); const hostname = '127.0.0.1'; const port = 3000; const server = http.createServer((req, res) => { res.statusCode = 200; res.setHeader('Content-Type', 'text/plain'); res.end('Hello World\n'); }); server.listen(port, hostname, () => { console.log(`Server running at http://${hostname}:${port}/`); }); 
+</button><l>
+To run the server, put the code into a file called example.js and execute it with Node.js:
+</p><button>
+$ node example.js Server running at http://127.0.0.1:3000/ 
+</button><p>
+All of the examples in the documentation can be run similarly.
+</p><p>
+تبدأ الأوامر المستعملة في هذا المثال بالمحرف $ أو < وذلك لمحاكاة كيفيَّة ظهورها في طرفيَّة المستخدم، لذا لا تضف هذين المحرفين إلى الأوامر عند نسخها واستعمالها. توجد الكثير من الدروس والأمثلة التي تتبع الطريقة نفسها، إذ يُستعمَل المحرف $ أو المحرف < للإشارة إلى الأوامر الاعتياديَّة التي يستطيع جميع المستخدمين تنفيذها، ويُستعمَل المحرف # للإشارة إلى الأوامر التي يتطلب تنفيذها صلاحيات مدير النظام (administrator).
+</p><p>
+انتبه إلى أنَّ الأسطر التي لا تبدأ بإحدى المحارف السابقة تُمثِّل عادةً مخرجات الأوامر التي تسبقها.
+</p><p>
+قبل الخوض بتفاصيل أعمق، هل Node.js مثبَّتةٌ على نظامك؟ إن لم تكن Node.js مثبتةً على حاسوبك، فارجع إلى هذا الدليل واتبع خطوات تنزيل وتثبيت Node.js.
+</p>ppشئ ppبعد ذلك مجلدًّا فارغًا باسم projects مثلًا وانتقل إليه. إن كان لديك مجلدٌ سابقٌ يحتوي على مشاريعك، فانتقل إليه مباشرةً.</><>
+<p>
+استعمل الأمرين التاليين في بيئة لينكس وماك لإنشاء المجلَّد والانتقال إليه:
+</p><p>
+$ mkdir ~/projects $ cd ~/projects 
+</p><p>
+أو استعمل الأمرين التاليين في موجه أوامر ويندوز (CMD):
+</p><button>
+> mkdir %USERPROFILE%\projects > cd %USERPROFILE%\projects 
+</button><p>
+أو إن كنت تستعمل الصدفة PowerShell في ويندوز، فاستخدم الأمرين التاليين:
+</p><button>
+> mkdir $env:USERPROFILE\projects > cd $env:USERPROFILE\projects 
+</button><p>
+الخطوة التالية هي إنشاء ملف داخل المجلَّد projects الذي أنشأناه (أو أي مجلَّد آخر تختاره) يدعى hello-world.js الذي سيحتوي على الشيفرة التي سنكتبها لاحقًا.
+</p><p>
+ملاحظة: يُعدُّ استخدام الشرِطَة العادية (-) والسفلية (_) من العادات الحسنة لفصل أسماء الملفات التي تزيد عن كلمة واحدة.
+</p><p>
+افتح الملف hello-worl.js باستعمال محرر النصوص المفضل لديك وانسخ الشيفرة التالية والصقها فيه:
+</p><button>
+const http = require('http'); const hostname = '127.0.0.1'; const port = 3000; const server = http.createServer((req, res) => { res.statusCode = 200; res.setHeader('Content-Type', 'text/plain'); res.end('مرحبًا بالعالم!\n'); }); server.listen(port, hostname, () => { console.log(`Server running at http://${hostname}:${port}/`); }); 
+</button><p>
+احفظ الملف ثمَّ انتقل إلى سطر الأوامر لديك واكتب الأمر التالي:
+</p><button>
+$ node hello-world.js 
+</button><p>
+يجب أن تظهر في الطرفيَّة لديك نتيجة شبيه بالنتيجة التالية تشير إلى أنَّ خادم Node.js بدأ بالعمل:
+</p><button>
+Server running at http://127.0.0.1:3000/ 
+</button><p>
+افتح الآن أيَّ متصفح ويب لديك وأدخل العنوان 
+</p><p>
+
+خيارات سطر الأوامر في Node.js
+
+</p><p>
+يتوافر العديد من خيارات سطر الأوامر التي يمكن استعمالها مع Node.js. تُستعمَل هذه الخيارات في تنقيح أخطاء الشيفرة، والتحكم في كيفيَّة تنفيذ الشيفرة، وغيرها من الأمور المفيدة.</><>
+
+يمكن عرض هذا التوثيق في الطرفيَّة عبر استعمال الأمر man node.</><>
+</p><>
+node [options] [V8 options] [script.js | -e "script" | -] [--] [arguments] node debug [script.js | -e "script" | <host>:<port>] … node --v8-options 
+</><p>
+إنَّ تنفيذ node دون أيَّة وسائط يؤدي إلى بدئها مع الوحدة REPL.</><>
+
+لمزيدٍ من المعلومات حول node debug، راجع رجاءً التوثيق «منقح الأخطاء».
+</p><>
+</><p>
+توِّفر الوحدة console طرفيَّة بسيطة لتنقيح الأخطاء تشبه طرفيَّة JavaScript التي توفِّرها متصفحات الويب.
+</p><p>
+تنتج الوحدة عنصرين محدَّدين هما:
+</p><p>
+الصنف Console مع توابعه مثل التوابع console.log()‎، و console.error()‎، و console.warn()‎ التي يمكن استعمالها للكتابة على أي مجرى من مجاري Node.js.
+</p><p>
+نسخة الكائن console العامَّة المضبوطة للكتابة على المجرى process.stdout والمجرى process.stderr، ويمكن استعمالها دون استدعاء require('console')‎.
+</p><p>
+تحذير: لا تكون توابع الكائن console العام متزامنةً دومًا مثل واجهات المتصفح البرمجيَّة التي تشبهها، ولا غير متزامنةٍ دومًا مثل مجاري Node.js الأخرى. ارجع إلى القسم «ملاحظةٌ حول عمليَّة الإدخال والإخراج (I/O)»  للمزيد من المعلومات.
+</p><p>
+يشرح المثال التالي كيفيَّة استعمال الكائن console العام:
+</p><button>
+console.log('hello world'); // hello world :سيُطبع على مجرى الخرج القياسي console.log('hello %s', 'world'); // hello world :سيُطبع على مجرى الخرج القياسي console.error(new Error('Whoops, something bad happened')); // [Error: Whoops, something bad happened] :سيُطبع على مجرى الخطأ القياسي const name = 'Will Robinson'; console.warn(`Danger ${name}! Danger!`); // Danger Will Robinson! Danger! :سيُطبع على مجرى الخطأ القياسي </><>
+
+بينما يشرح المثال التالي كيفيَّة استعمال الصنف Console:
+</button><button>
+const out = getStreamSomehow(); const err = getStreamSomehow(); const myConsole = new console.Console(out, err); myConsole.log('hello world'); // hello world :out سيُطبع على المجرى myConsole.log('hello %s', 'world'); // hello world :out سيُطبع على المجرى myConsole.error(new Error('Whoops, something bad happened')); // [Error: Whoops, something bad happened] :err سيُطبع على المجرى const name = 'Will Robinson'; myConsole.warn(`Danger ${name}! Danger!`); // Danger Will Robinson! Danger! :err سيُطبع على المجرى 
+</button><ll>
+
+	<body>
+	</body>
+</html>

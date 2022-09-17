@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<script>
+		</script>
+	</head>
+	<body><h1>timer</h1>
+	<p> setInterval(function() {  
+         console.log("setInterval: Hey! 1 millisecond completed!..");   
+        }, 1000);           </p>node timer1.js  
+	<p> var i =0;  
+console.log(i);  
+setInterval(function(){  
+    i++;  
+    console.log(i);  
+}, 1000);     </p><h3>node timer5.js     </h3>
+<p>setTimeout(function() {   
+        console.log("setTimeout: Hey! 1000 millisecond completed!..");  
+}, 1000);         </p>
+<p>function welcome () {  
+          console.log("Welcome to Code Jupiter!");  
+}  
+var id1 = setTimeout(welcome,1000);  
+var id2 = setInterval(welcome,1000);  
+clearTimeout(id1);  
+//clearInterval(id2);          </p><h3>node timer3.js</h3>
+<p>function welcome () {  
+  console.log("Welcome to JavaTpoint!");  
+}  
+var id1 = setTimeout(welcome,1000);  
+var id2 = setInterval(welcome,1000);  
+//clearTimeout(id1);  
+clearInterval(id2);  </p><h3>node timer3.js     </h3> 
+	
+	</body>
+</html>

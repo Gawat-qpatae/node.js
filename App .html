@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<script>
+		</script>
+	</head>
+	<body>
+	الواجهات البرمجية العامة (Public API)
+نظرة سريعة
+تشرح الشيفرة التالية بشكل سريع وشامل الواجهات البرمجيَّة العامَّة:
+<p>
+const async_hooks = require('async_hooks');
+<br>
+// تعيد مُعرِّف محتوى التنفيذ الحالي
+const eid = async_hooks.executionAsyncId();
+<br>
+// تعيد معرِّف المعالج المراد استدعاؤه والمسؤول عن 
+// استدعاء رد النداء لمجال التنفيذ الحالي
+const tid = async_hooks.triggerAsyncId();
+<br>
+// .جميع ردود النداء هذه هي اختيارية .AsyncHook إنشاء نسخة جديدة من
+const asyncHook =
+    async_hooks.createHook({ init, before, after, destroy, promiseResolve });
+<br>
+// هذه. هذا ليس فعلًا ضمنيًا AsyncHook السماح باستدعاء ردود نداء النسخة
+// .ينفَّذ بعد تشغيل الدالة البانية، ويجب التصريح به بشكل واضح لبدء تنفيذ ردود النداء
+asyncHook.enable();
+<br>
+// تعطيل استعمال الأحداث غير المتزامنة الجديدة
+asyncHook.disable();
+<br>
+//
+// createHook() ما يلي هو ردود النداء التي يمكن تمريرها إلى
+//
+
+<br>
+//  خلال إنشاء الكائن. ربما لم يكتمل إنشاء المورد بعد عندما ينفَّذ رد النداء init يستدعى رد النداء
+// .قد مُلئت بعد "asyncId" هذا، لذا لا تكون جميع حقول المورد المشار إليه من قبل<p>
+function init(asyncId, type, triggerAsyncId, resource) { }
+<br>
+// N فقط قبل استدعاء رد نداء المورد. يمكن أن يستدعى من 0 إلى before يستدعى رد النداء 
+// بينما يستدعى مرة واحدة فقط مع ،TCPWrap مرة مع المعالجات مثل<p>
+// FSReqWrap الطلبات مثل
+function before(asyncId) { }
+<br>
+// فقط بعد أن يكون رد نداء المورد قد اكتمل after يستدعى رد النداء<p>
+function after(asyncId) { }
+<br>
+// AsyncWrap عندما تدمر نسخةٌ من destroy  يستدعى رد النداء<p>
+function destroy(asyncId) { }
+<br>
+// عندما تمرر Promise فقط من أجل الموارد promiseResolve يستدعى 
+// الباني المستدعى `Promise` إلى الكائن `resolve` الدالة<p>
+// .(Promise إما بشكل مباشرةً أو عبر وسائل أخرى لاستبيان الكائن)<p>
+function promiseResolve(asyncId) { }
+async_hooks.createHook(callbacks)‎<>
+أضيفت في الإصدار: v8.1.0
+<br>
+callbacks: ‏<Object> ردود نداء الخطاف (Hook Callbacks) المراد تسجيلها، ويمكن أن يحوي إحدى الدوال التالية:<p>
+init: ‏<Function> دالة رد النداء init.
+before: ‏‏<Function> دالة رد النداء before.
+after: ‏‏<Function> دالة رد النداء after.
+destroy: ‏‏<Function> دالة رد النداء destroy.
+تعيد هذه الدالة نسخةً من خطاف غير متزامن AsyncHook يستعمل لتعطيل وتشغيل الخطافات.
+<br>
+تسجِّل الدالة async_hooks.createHook(callbacks)‎ الدوال المراد استدعاؤها في مختلف أوقات تنفيذ أحداث كل عمليَّة غير متزامنة.<p>
+
+تُستدعَى ردود النداء init()‎، و before()‎، و after()‎، و destroy()‎ للحدث غير المتزامن الخاص بها خلال فترة تواجد المورد.<p>
+
+جميع ردود النداء اختياريَّة. إن احتجت مثلًا إلى تعقُّب عمليَّة مسح مورد فقط، فمرِّر رد النداء destroy. مواصفات جميع الدوال التي يمكن تمريرها إلى callbacks موجودةٌ في القسم "ردود نداء الخطاف" الذي سيأتي ذكره لاحقًا.
+<br><p>
+const async_hooks = require('async_hooks');
+
+const asyncHook = async_hooks.createHook({
+  init(asyncId, type, triggerAsyncId, resource) { },
+  destroy(asyncId) { }
+});
+انتبه إلى أنَّ ردود النداء ستُورَّث بوساطة سلسلة prototype:
+
+class MyAsyncCallbacks {
+  init(asyncId, type, triggerAsyncId, resource) { }
+  destroy(asyncId) {}
+}
+
+class MyAddedCallbacks extends MyAsyncCallbacks {
+  before(asyncId) { }
+  after(asyncId) { }
+}
+
+const asyncHook = async_hooks.createHook(new MyAddedCallbacks());<p>
+</p>
+معالجة الأخطاء
+إن رُميت أيَّة ردود النداء AsyncHook، فسيطبع التطبيق تقرير متعقِّب المكدس (stack trace) ويُغلق بعدها. يتبع مسار الخروج نفس مسار الاستثناء uncaught، ولكن يحذف جميع المستمعين 'uncaughtException' وتجبر العمليَّة بذلك على الخروج. لا تزال تُستدعَى ردود النداء 'exit' إلا إذ شُغِّل البرنامج مع الراية ‎--abort-on-uncaught-exception وفي هذه الحالة سيُطبَع تقرير متعقِّب المكدس وسيُغلَق التطبيق مغادرًا ملف النواة.
+
+
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<script>
+		</script>
+	</head>
+	<body>
+	<p>ما هو تلس / سل تسلس لتقديم أمان طبقة النقل. هو خلف لتأمين طبقة المقابس (سل). يستخدم تلس جنبا إلى جنب مع سل في البروتوكولات التشفير لتأمين الاتصالات على شبكة الإنترنت. يستخدم تلس التشفير العام المفاتيح لتشفير الرسائل. فإنه يشفه الاتصالات عموما على طبقة تكب. ما هي التشفير العام الرئيسي في التشفير العام الرئيسي، كل عميل وكل خادم اثنين من المفاتيح: مفتاح العام والخاص الرئيسي. ويتم تقاسم المفتاح العام مع الجميع ويتم تأمين المفتاح الخاص. لتشفير رسالة، يتطلب جهاز كمبيوتر مفتاح خاص الخاص بك والمفتاح العام للمستلم. من ناحية أخرى، لفك تشفير الرسالة، يتطلب المستلم من تلقاء نفسها لديك لاستخدامها ("تلس)) للوصول إلى هذه الوحدة النموذجية. بناء الجملة:</p>
+<p><تستخدم وحدة تلس أوبنسل لتحقيق أمن طبقة النقل وطبقة المقبس الآمنة. تلس / سل هو البنية التحتية الرئيسية / خاصة الرئيسية. يجب أن يكون لكل عميل وكل خادم مفتاح خاص. يمكن إنشاء مفتاح خاص مثل هذا:>
+</p>
+<p>جميع الاطفال وبعض العملاء بحاجة إلى شهادة. الشهادات هي مفاتيح عامة وقعتها سلطة شهادة أو موقع مميز. للحصول على شهادة، لديك لإنشاء ملف "تسجيل التوقيع الشهادة" (كسر). يمكن إنشاء شهادة من هذا القبيل:</p>
+	<button>openssl req -new -key ryans-key.pem -out ryans-csr.pem    
+To create a self-signed certificate with the CSR:
+<h3>
+openssl x509 -req -in ryans-csr.pem -signkey ryans-key.pem -out ryans-cert.pem   
+</h3><h2>Node.js TLS client example</h2>
+<p>File: tls_client.js</p>
+<h5>
+tls = require('tls');  
+function connected(stream) {  
+    if (stream) {  
+       // socket connected  
+      stream.write("GET / HTTP/1.0\n\rHost: encrypted.google.com:443\n\r\n\r");    
+    } else {  
+      console.log("Connection failed");  
+    }  
+}  
+ // needed to keep socket variable in scope  
+var dummy = this;  
+ // try to connect to the server  
+dummy.socket = tls.connect(443, 'encrypted.google.com', function() {  
+   // callback called only after successful socket connection  
+   dummy.connected = true;  
+   if (dummy.socket.authorized) {  
+      // authorization successful  
+      dummy.socket.setEncoding('utf-8');  
+      connected(dummy.socket);  
+   } else {  
+      // authorization failed  
+     console.log(dummy.socket.authorizationError);  
+     connected(null);  
+   }  
+});  
+ dummy.socket.addListener('data', function(data) {  
+   // received data  
+   console.log(data);  
+});  
+ dummy.socket.addListener('error', function(error) {  
+   if (!dummy.connected) {  
+     // socket was not connected, notify callback  
+     connected(null);  
+   }  
+   console.log("FAIL");  
+   console.log(error);  
+});  
+ dummy.socket.addListener('close', function() {  
+ // do something  
+});  </h5></button>
+		
+				</body>
+</html>
